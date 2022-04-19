@@ -61,5 +61,5 @@ fun TextScreen() {
 
 @Composable
 fun MyText() {
-  //TODO add your code here
+    Text(text = R.string.jetpack_compose)
 }

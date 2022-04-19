@@ -38,6 +38,7 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.raywenderlich.android.jetpackcompose.router.JetFundamentalsRouter
 import com.raywenderlich.android.jetpackcompose.router.Screen
 import com.raywenderlich.android.jetpackcompose.screens.*
@@ -56,4 +57,11 @@ fun JetFundamentalsApp() {
       }
     }
   }
+}
+
+
+@Preview
+@Composable
+fun ComposablePreview() {
+  JetFundamentalsApp()
 }

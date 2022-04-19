@@ -37,8 +37,22 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import com.raywenderlich.android.jetnotes.routing.JetNotesRouter
+import com.raywenderlich.android.jetnotes.routing.Screen
+import com.raywenderlich.android.jetnotes.theme.JetNotesTheme
+import com.raywenderlich.android.jetnotes.ui.components.AppDrawer
+import com.raywenderlich.android.jetnotes.ui.components.Note
+import com.raywenderlich.android.jetnotes.ui.components.SaveNoteScreen
+import com.raywenderlich.android.jetnotes.ui.screens.NotesScreen
+import com.raywenderlich.android.jetnotes.ui.screens.TrashScreen
 import com.raywenderlich.android.jetnotes.viewmodel.MainViewModel
 import com.raywenderlich.android.jetnotes.viewmodel.MainViewModelFactory
+import kotlinx.coroutines.launch
 
 /**
  * Main activity for the app.
@@ -56,7 +70,21 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
+      JetNotesTheme {
+        MainActivityScreen(viewModel)
+      }
+    }
+  }
+}
 
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun MainActivityScreen(viewModel: MainViewModel) {
+  Surface {
+    when (JetNotesRouter.currentScreen) {
+      is Screen.Notes -> NotesScreen(viewModel)
+      is Screen.SaveNote -> SaveNoteScreen(viewModel)
+      is Screen.Trash -> TrashScreen(viewModel)
     }
   }
 }
